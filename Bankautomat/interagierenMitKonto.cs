@@ -6,11 +6,10 @@ using System.Threading.Tasks;
 
 namespace Bankautomat
 {
-    class interagierenMitKonto
+    public class interagierenMitKonto
     {
-        public static void Kontooptionen(Konto konto)
+        public static void Kontooptionen()
         {
-            Konto aktuellesKonto = konto;
 
         }
     }

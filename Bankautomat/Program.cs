@@ -6,6 +6,7 @@ namespace Bankautomat
     public class Program
     {
         public static Benutzer benutzer = new Benutzer();
+        public static Konto konto;
         static void Main(string[] args)
         {
             setInputVorname();
@@ -24,6 +25,8 @@ namespace Bankautomat
                 input = Console.ReadLine();
             }
             benutzer.setVorname(input);
+
+            //Try Catch hier Notwendig (sonst wird Fehler ausgelöst, da Test kein Konsolenfenster öffnet)
             try
             {
                 Console.Clear();
@@ -34,7 +37,7 @@ namespace Bankautomat
             }
         }
 
-        static void setInputNachname()
+        public static void setInputNachname()
         {
             Console.WriteLine("Erstellen eines neuen Kontos...");
             Console.WriteLine("Gib deinen Nachnamen ein:");
@@ -45,21 +48,52 @@ namespace Bankautomat
                 input = Console.ReadLine();
             }
             benutzer.setNachname(input);
-            Console.Clear();
+
+            //Try Catch hier Notwendig (sonst wird Fehler ausgelöst, da Test kein Konsolenfenster öffnet)
+            try
+            {
+                Console.Clear();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Open console window");
+            }
         }
 
-        static void KontoErstellenUndFortfahren()
+        public static void KontoErstellenUndFortfahren()
         {
             Console.WriteLine("Erstellen eines neuen Kontos...");
             Console.WriteLine("Gib deinen aktuellen Kontostand ein:");
             Console.WriteLine("------------------------------------------------------------");
-            Double input = 0;
+            String input;
             try
             {
-                input = Convert.ToDouble(Console.ReadLine());
-                Konto konto = new Konto(input, benutzer);
-                interagierenMitKonto.Kontooptionen(konto);
-                Console.Clear();
+                input = Console.ReadLine();
+                int countDecimalDigits = input[(input.IndexOf(".") + 1)..].Length;
+                if (countDecimalDigits > 2)
+                {
+                    throw new FormatException();
+                }
+                double inputDouble = Convert.ToDouble(input);
+                konto = new Konto(inputDouble, benutzer);
+                interagierenMitKonto.Kontooptionen();
+
+                //Try Catch hier Notwendig (sonst wird Fehler ausgelöst, da Test kein Konsolenfenster öffnet)
+                try
+                {
+                    Console.Clear();
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("Open console window");
+                }
+            }
+            catch (FormatException e)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("Nur 2 Nachkommastellen möglich - erneut versuchen");
+                Console.ResetColor();
+                KontoErstellenUndFortfahren();
             }
             catch (Exception e)
             {

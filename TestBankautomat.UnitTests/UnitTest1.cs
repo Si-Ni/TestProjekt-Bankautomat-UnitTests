@@ -79,9 +79,9 @@ namespace TestBankautomat.UnitTests
         }
 
         [Test]
-        public void Program_SetInputVorname_VornameSettedCorrect()
+        public void Program_SetInputVorname_VornameCorrectlySet()
         {
-            String testName = "testName";
+            String testName = "testVorname";
             var stringReader = new StringReader(testName);
             Console.SetIn(stringReader);
 
@@ -90,5 +90,32 @@ namespace TestBankautomat.UnitTests
             String result = Bankautomat.Program.benutzer.getVorname();
             Assert.AreEqual(testName, result);
         }
+
+        [Test]
+        public void Program_SetInputNachname_NachnameCorrectlySet()
+        {
+            String testName = "testNachname";
+            var stringReader = new StringReader(testName);
+            Console.SetIn(stringReader);
+
+            Bankautomat.Program.setInputNachname();
+
+            String result = Bankautomat.Program.benutzer.getNachname();
+            Assert.AreEqual(testName, result);
+        }
+
+        [Test]
+        public void ProgramKontoErstellen_ValidInput_KontoErstellenUndKontostandSetzen()
+        {
+            String testKontostand = "315.79";
+            var stringReader = new StringReader(testKontostand);
+            Console.SetIn(stringReader);
+
+            Bankautomat.Program.KontoErstellenUndFortfahren();
+
+            Double result = Bankautomat.Program.konto.getKontostand();
+            Assert.AreEqual(Convert.ToDouble(testKontostand), result);
+        }
+
     }
 }
