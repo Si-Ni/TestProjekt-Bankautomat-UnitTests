@@ -1,0 +1,60 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Bankautomat
+{
+    public class Konto
+    {
+        private Double kontostand;
+        private Benutzer owner;
+
+        public Konto(Double kontostandEingabe, Benutzer benutzer)
+        {
+            this.kontostand = kontostandEingabe;
+            this.owner = benutzer;
+        }
+        public void changeKontostand(Double change)
+        {
+            this.kontostand += change;
+        }
+        public Double getKontostand()
+        {
+            return kontostand;
+        }
+        public bool kannZugegriffenWerdenVon(Benutzer benutzer)
+        {
+            return (owner == benutzer);
+        }
+    }
+
+    public class Benutzer
+    {
+        private String Vorname = "test";
+        private String Nachname = "";
+        private Konto konto;
+
+        public void setVorname(String vorname)
+        {
+            this.Vorname = vorname;
+        }
+        public String getVorname()
+        {
+            return Vorname;
+        }
+        public void setNachname(String nachname)
+        {
+            this.Nachname = nachname;
+        }
+        public String getNachname()
+        {
+            return Nachname;
+        }
+        public void setKonto(Konto kontoEingabe)
+        {
+            this.konto = kontoEingabe;
+        }
+    }
+}

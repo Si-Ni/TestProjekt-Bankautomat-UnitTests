@@ -1,0 +1,16 @@
+C:\Users\sin\Projekte\C#\Bankautomat\Bankautomat\obj\Debug\net5.0\Bankautomat.csproj.AssemblyReference.cache
+C:\Users\sin\Projekte\C#\Bankautomat\Bankautomat\obj\Debug\net5.0\Bankautomat.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\sin\Projekte\C#\Bankautomat\Bankautomat\obj\Debug\net5.0\Bankautomat.AssemblyInfoInputs.cache
+C:\Users\sin\Projekte\C#\Bankautomat\Bankautomat\obj\Debug\net5.0\Bankautomat.AssemblyInfo.cs
+C:\Users\sin\Projekte\C#\Bankautomat\Bankautomat\obj\Debug\net5.0\Bankautomat.csproj.CoreCompileInputs.cache
+C:\Users\sin\Projekte\C#\Bankautomat\Bankautomat\bin\Debug\net5.0\Bankautomat.exe
+C:\Users\sin\Projekte\C#\Bankautomat\Bankautomat\bin\Debug\net5.0\Bankautomat.deps.json
+C:\Users\sin\Projekte\C#\Bankautomat\Bankautomat\bin\Debug\net5.0\Bankautomat.runtimeconfig.json
+C:\Users\sin\Projekte\C#\Bankautomat\Bankautomat\bin\Debug\net5.0\Bankautomat.runtimeconfig.dev.json
+C:\Users\sin\Projekte\C#\Bankautomat\Bankautomat\bin\Debug\net5.0\Bankautomat.dll
+C:\Users\sin\Projekte\C#\Bankautomat\Bankautomat\bin\Debug\net5.0\ref\Bankautomat.dll
+C:\Users\sin\Projekte\C#\Bankautomat\Bankautomat\bin\Debug\net5.0\Bankautomat.pdb
+C:\Users\sin\Projekte\C#\Bankautomat\Bankautomat\obj\Debug\net5.0\Bankautomat.dll
+C:\Users\sin\Projekte\C#\Bankautomat\Bankautomat\obj\Debug\net5.0\ref\Bankautomat.dll
+C:\Users\sin\Projekte\C#\Bankautomat\Bankautomat\obj\Debug\net5.0\Bankautomat.pdb
+C:\Users\sin\Projekte\C#\Bankautomat\Bankautomat\obj\Debug\net5.0\Bankautomat.genruntimeconfig.cache
