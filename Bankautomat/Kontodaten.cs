@@ -16,7 +16,7 @@ namespace Bankautomat
             this.kontostand = kontostandEingabe;
             this.owner = benutzer;
         }
-        public void changeKontostand(Double change)
+        public void ChangeKontostand(Double change)
         {
             this.kontostand += change;
         }
@@ -24,7 +24,7 @@ namespace Bankautomat
         {
             return kontostand;
         }
-        public bool kannZugegriffenWerdenVon(Benutzer benutzer)
+        public bool KannZugegriffenWerdenVon(Benutzer benutzer)
         {
             return (owner == benutzer);
         }

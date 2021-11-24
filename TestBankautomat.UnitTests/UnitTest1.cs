@@ -47,7 +47,7 @@ namespace TestBankautomat.UnitTests
             double preSetKontostand = 3000;
             var konto = new Bankautomat.Konto(preSetKontostand, benutzer);
             double changeKontostandBy = -150.56;
-            konto.changeKontostand(changeKontostandBy);
+            konto.ChangeKontostand(changeKontostandBy);
 
             double result = konto.getKontostand();
             double expectedResult = preSetKontostand + changeKontostandBy;
@@ -61,7 +61,7 @@ namespace TestBankautomat.UnitTests
             var besitzer = new Bankautomat.Benutzer();
             var konto = new Bankautomat.Konto(3000, besitzer);
 
-            bool result = konto.kannZugegriffenWerdenVon(besitzer);
+            bool result = konto.KannZugegriffenWerdenVon(besitzer);
 
             Assert.IsTrue(result);
         }
@@ -73,7 +73,7 @@ namespace TestBankautomat.UnitTests
             var konto = new Bankautomat.Konto(3000, besitzer);
             var andererBenutzer = new Bankautomat.Benutzer();
 
-            bool result = konto.kannZugegriffenWerdenVon(andererBenutzer);
+            bool result = konto.KannZugegriffenWerdenVon(andererBenutzer);
 
             Assert.IsFalse(result);
         }
@@ -111,7 +111,7 @@ namespace TestBankautomat.UnitTests
             var stringReader = new StringReader(testKontostand);
             Console.SetIn(stringReader);
 
-            Bankautomat.Program.KontoErstellenUndFortfahren();
+            Bankautomat.Program.KontoInputLesenUndFortfahren();
 
             Double result = Bankautomat.Program.konto.getKontostand();
             Assert.AreEqual(Convert.ToDouble(testKontostand), result);
