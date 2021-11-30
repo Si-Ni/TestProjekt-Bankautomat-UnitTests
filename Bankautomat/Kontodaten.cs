@@ -32,7 +32,7 @@ namespace Bankautomat
 
     public class Benutzer
     {
-        private String Vorname = "test";
+        private String Vorname = "";
         private String Nachname = "";
         private Konto konto;
 

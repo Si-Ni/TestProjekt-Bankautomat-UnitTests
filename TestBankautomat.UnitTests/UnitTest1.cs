@@ -1,6 +1,8 @@
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NUnit.Framework;
 using System;
 using System.IO;
+using Assert = NUnit.Framework.Assert;
 
 namespace TestBankautomat.UnitTests
 {
@@ -89,6 +91,17 @@ namespace TestBankautomat.UnitTests
 
             String result = Bankautomat.Program.benutzer.getVorname();
             Assert.AreEqual(testName, result);
+        }
+
+        [Test]
+        [ExpectedException(typeof(NullReferenceException))]
+        public void Program_SetInputVornameEmpty_VornameNotSet()
+        {
+            String testName = "";
+            var stringReader = new StringReader(testName);
+            Console.SetIn(stringReader);
+
+            Bankautomat.Program.setInputVorname();
         }
 
         [Test]

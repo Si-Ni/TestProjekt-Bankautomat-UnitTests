@@ -18,18 +18,40 @@ namespace Bankautomat
 
         public static void setInputVorname()
         {
-            Console.WriteLine("Erstellen eines neuen Kontos...");
-            Console.WriteLine("Gib deinen Vornamen ein:");
-            Console.WriteLine("------------------------------------------------------------");
-            String input = "";
-            while (input == "")
+            try
             {
+                Console.WriteLine("Erstellen eines neuen Kontos...");
+                Console.WriteLine("Gib deinen Vornamen ein:");
+                Console.WriteLine("------------------------------------------------------------");
+                String input = "";
                 input = Console.ReadLine();
-            }
-            benutzer.setVorname(input);
+                if (input.Equals("") || input.Equals(null) || input.Equals(" "))
+                {
+                    throw new FormatException();
+                }
+                benutzer.setVorname(input);
 
-            TryToClearConsole();
+                TryToClearConsole();
+            }
+            catch (FormatException)
+            {
+                VorFortfahrenAufKeyPressWarten();
+                setInputVorname();
+            }
+            catch (NullReferenceException)
+            {
+                
+            }
         }
+
+        static void VorFortfahrenAufKeyPressWarten()
+        {
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine("Press any key to try again");
+            Console.ReadKey();
+            Console.ResetColor();
+        }
+
         static void TryToClearConsole()
         {
             //Try Catch hier Notwendig (sonst wird Fehler ausgelöst, da Tests kein Konsolenfenster öffnen)

@@ -106,3 +106,5 @@ C:\Users\sin\Projekte\C#\Bankautomat\TestBankautomat.UnitTests\obj\Debug\net5.0\
 C:\Users\sin\Projekte\C#\Bankautomat\TestBankautomat.UnitTests\obj\Debug\net5.0\ref\TestBankautomat.UnitTests.dll
 C:\Users\sin\Projekte\C#\Bankautomat\TestBankautomat.UnitTests\obj\Debug\net5.0\TestBankautomat.UnitTests.pdb
 C:\Users\sin\Projekte\C#\Bankautomat\TestBankautomat.UnitTests\obj\Debug\net5.0\TestBankautomat.UnitTests.genruntimeconfig.cache
+C:\Users\sin\Projekte\C#\Bankautomat\TestBankautomat.UnitTests\bin\Debug\net5.0\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.dll
+C:\Users\sin\Projekte\C#\Bankautomat\TestBankautomat.UnitTests\bin\Debug\net5.0\Microsoft.VisualStudio.TestPlatform.TestFramework.dll
