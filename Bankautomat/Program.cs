@@ -38,10 +38,6 @@ namespace Bankautomat
                 VorFortfahrenAufKeyPressWarten();
                 setInputVorname();
             }
-            catch (NullReferenceException)
-            {
-                
-            }
         }
 
         static void VorFortfahrenAufKeyPressWarten()
@@ -67,17 +63,25 @@ namespace Bankautomat
 
         public static void setInputNachname()
         {
-            Console.WriteLine("Erstellen eines neuen Kontos...");
-            Console.WriteLine("Gib deinen Nachnamen ein:");
-            Console.WriteLine("------------------------------------------------------------");
-            String input = "";
-            while (input == "")
-            {
+            try {
+                Console.WriteLine("Erstellen eines neuen Kontos...");
+                Console.WriteLine("Gib deinen Nachnamen ein:");
+                Console.WriteLine("------------------------------------------------------------");
+                String input = "";
                 input = Console.ReadLine();
-            }
-            benutzer.setNachname(input);
+                if(input.Equals("") || input.Equals(null) || input.Equals(" ")) {
+                    throw new FormatException();
+                }
 
-            TryToClearConsole();
+                benutzer.setNachname(input);
+
+                TryToClearConsole();
+            }
+            catch (FormatException)
+            {
+                VorFortfahrenAufKeyPressWarten();
+                setInputNachname();
+            }
         }
 
         public static void KontoInputLesenUndFortfahren()
@@ -85,39 +89,49 @@ namespace Bankautomat
             Console.WriteLine("Erstellen eines neuen Kontos...");
             Console.WriteLine("Gib deinen aktuellen Kontostand ein:");
             Console.WriteLine("------------------------------------------------------------");
-            KontoInputVerarbeiten();
+            KontoErstellen();
 
             TryToClearConsole();
         }
 
-        public static void KontoInputVerarbeiten()
+        static void KontoErstellen()
         {
-            try
-            {
-                KontoErstellen();
+            try {
+                double inputDouble = Geldeingabe(true);
+                konto = new Konto(inputDouble, benutzer);
             }
-            catch (FormatException)
-            {
-                FehlerAusgebenMehrAls2Nachkommastellen();
-                KontoErstellen();
-            }
-            catch (Exception)
-            {
+            catch(Exception) {
                 FehlerAusgebenInvalidInput();
                 KontoErstellen();
             }
         }
 
-        static void KontoErstellen()
-        {
-            String input = Console.ReadLine();
-            int countDecimalDigits = input[(input.IndexOf(".") + 1)..].Length;
-            if (countDecimalDigits > 2)
-            {
-                throw new FormatException();
+        public static double Geldeingabe(bool KontoErstellenAufrufen) {
+            String input = "";
+            input = Console.ReadLine();
+            int countDecimalDigits = input[(input.IndexOf(",") + 1)..].Length;
+            if(countDecimalDigits > 2 && input.IndexOf(",") != -1) {
+                FehlerAusgebenMehrAls2Nachkommastellen();
+                if(KontoErstellenAufrufen) {
+                    KontoErstellen();
+                } else {
+                    System.Environment.Exit(1);
+                }
+            }else if(input.IndexOf(".") != -1) {
+                FehlerPunktVerwendet();
+                if(KontoErstellenAufrufen) {
+                    KontoErstellen();
+                } else {
+                    System.Environment.Exit(1);
+                }
             }
-            double inputDouble = Convert.ToDouble(input);
-            konto = new Konto(inputDouble, benutzer);
+            return Convert.ToDouble(input);
+        }
+
+        static void FehlerPunktVerwendet() {
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine("Bitte ein Komma (,) anstatt eines Punktes (.) verwenden");
+            Console.ResetColor();
         }
 
         static void FehlerAusgebenMehrAls2Nachkommastellen()
@@ -130,7 +144,7 @@ namespace Bankautomat
         static void FehlerAusgebenInvalidInput()
         {
             Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine("ungültige Einfabe - versuche es erneut");
+            Console.WriteLine("ungültige Eingabe - versuche es erneut");
             Console.ResetColor();
         }
     }

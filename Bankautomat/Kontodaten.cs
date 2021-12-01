@@ -34,7 +34,6 @@ namespace Bankautomat
     {
         private String Vorname = "";
         private String Nachname = "";
-        private Konto konto;
 
         public void setVorname(String vorname)
         {
@@ -51,10 +50,6 @@ namespace Bankautomat
         public String getNachname()
         {
             return Nachname;
-        }
-        public void setKonto(Konto kontoEingabe)
-        {
-            this.konto = kontoEingabe;
         }
     }
 }

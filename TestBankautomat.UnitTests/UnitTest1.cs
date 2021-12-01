@@ -94,14 +94,21 @@ namespace TestBankautomat.UnitTests
         }
 
         [Test]
-        [ExpectedException(typeof(NullReferenceException))]
         public void Program_SetInputVornameEmpty_VornameNotSet()
         {
-            String testName = "";
-            var stringReader = new StringReader(testName);
-            Console.SetIn(stringReader);
+            try {
+                String testName = "";
+                var stringReader = new StringReader(testName);
+                Console.SetIn(stringReader);
 
-            Bankautomat.Program.setInputVorname();
+                Bankautomat.Program.setInputVorname();
+
+                Assert.Fail();
+            } 
+            catch(NullReferenceException) {
+                Assert.Pass();
+            }
+            Assert.Pass();
         }
 
         [Test]
@@ -118,9 +125,24 @@ namespace TestBankautomat.UnitTests
         }
 
         [Test]
+        public void Program_SetInputNachnameEmpty_NachnameNotSet() {
+            try {
+                String testName = "";
+                var stringReader = new StringReader(testName);
+                Console.SetIn(stringReader);
+
+                Bankautomat.Program.setInputNachname();
+                Assert.Fail();
+            }
+            catch(NullReferenceException) {
+                Assert.Pass();
+            }
+        }
+
+        [Test]
         public void ProgramKontoErstellen_ValidInput_KontoErstellenUndKontostandSetzen()
         {
-            String testKontostand = "315.79";
+            String testKontostand = "3434,53";
             var stringReader = new StringReader(testKontostand);
             Console.SetIn(stringReader);
 
@@ -129,6 +151,36 @@ namespace TestBankautomat.UnitTests
             Double result = Bankautomat.Program.konto.getKontostand();
             Assert.AreEqual(Convert.ToDouble(testKontostand), result);
         }
+
+        [Test]
+        public void ProgramGeldeingabe_InvalidInput_ThrowException() {
+            try {
+                String testKontostand = "invalid input";
+                var stringReader = new StringReader(testKontostand);
+                Console.SetIn(stringReader);
+
+                double test = Bankautomat.Program.Geldeingabe(false);
+                Assert.Fail();
+            }
+            catch(FormatException) {
+                Assert.Pass();
+            }
+        }
+
+        /*[Test]
+        public void ProgramGeldeingabe_MehrAls2Nachkommastellen_NichtFortfahren() {
+            String testKontostand = "123,234";
+            var stringReader = new StringReader(testKontostand);
+            Console.SetIn(stringReader);
+
+            var stringWriter = new StringWriter();
+            Console.SetOut(stringWriter);
+            
+            double test = Bankautomat.Program.Geldeingabe(false);
+            var output = stringWriter.ToString();
+
+            Assert.AreEqual("Nur 2 Nachkommastellen möglich - erneut versuchen", output);
+        }*/
 
     }
 }
