@@ -97,7 +97,7 @@ namespace Bankautomat
         static void KontoErstellen()
         {
             try {
-                double inputDouble = Geldeingabe(true);
+                double inputDouble = Geldeingabe("KontoErstellen");
                 konto = new Konto(inputDouble, benutzer);
             }
             catch(Exception) {
@@ -106,23 +106,25 @@ namespace Bankautomat
             }
         }
 
-        public static double Geldeingabe(bool KontoErstellenAufrufen) {
+        public static double Geldeingabe(string aufzurufendeMethode) {
+            bool fehler = false;
             String input = "";
             input = Console.ReadLine();
             int countDecimalDigits = input[(input.IndexOf(",") + 1)..].Length;
             if(countDecimalDigits > 2 && input.IndexOf(",") != -1) {
                 FehlerAusgebenMehrAls2Nachkommastellen();
-                if(KontoErstellenAufrufen) {
-                    KontoErstellen();
-                } else {
-                    System.Environment.Exit(1);
-                }
+                fehler = true;
             }else if(input.IndexOf(".") != -1) {
                 FehlerPunktVerwendet();
-                if(KontoErstellenAufrufen) {
+                fehler = true;
+            }
+            if(fehler) {
+                if(aufzurufendeMethode == "KontoErstellen") {
                     KontoErstellen();
-                } else {
-                    System.Environment.Exit(1);
+                } else if(aufzurufendeMethode == "GeldAbheben") {
+                    interagierenMitKonto.GeldAbheben();
+                } else if(aufzurufendeMethode == "GeldEinzahlen") {
+                    interagierenMitKonto.GeldEinzahlen();
                 }
             }
             return Convert.ToDouble(input);
@@ -141,7 +143,7 @@ namespace Bankautomat
             Console.ResetColor();
         }
 
-        static void FehlerAusgebenInvalidInput()
+        public static void FehlerAusgebenInvalidInput()
         {
             Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine("ungültige Eingabe - versuche es erneut");

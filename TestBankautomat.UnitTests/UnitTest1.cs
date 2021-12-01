@@ -159,28 +159,12 @@ namespace TestBankautomat.UnitTests
                 var stringReader = new StringReader(testKontostand);
                 Console.SetIn(stringReader);
 
-                double test = Bankautomat.Program.Geldeingabe(false);
+                double test = Bankautomat.Program.Geldeingabe("UnitTest");
                 Assert.Fail();
             }
             catch(FormatException) {
                 Assert.Pass();
             }
         }
-
-        /*[Test]
-        public void ProgramGeldeingabe_MehrAls2Nachkommastellen_NichtFortfahren() {
-            String testKontostand = "123,234";
-            var stringReader = new StringReader(testKontostand);
-            Console.SetIn(stringReader);
-
-            var stringWriter = new StringWriter();
-            Console.SetOut(stringWriter);
-            
-            double test = Bankautomat.Program.Geldeingabe(false);
-            var output = stringWriter.ToString();
-
-            Assert.AreEqual("Nur 2 Nachkommastellen möglich - erneut versuchen", output);
-        }*/
-
     }
 }
